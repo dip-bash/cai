@@ -1,0 +1,12 @@
+[
+  {
+    "time": "2025-04-23T20:29:56.747175",
+    "cmd": "ping",
+    "data": "Command: `ping google.com`\nExample: Sends ICMP ECHO_REQUEST packets to google.com.\n\nCommand: `ping -c 5 google.com`\nExample: Sends 5 ICMP ECHO_REQUEST packets to google.com and then exits.\n\nCommand: `ping -i 2 google.com`\nExample: Sends ICMP ECHO_REQUEST packets to google.com every 2 seconds.\n\nCommand: `ping -t 64 google.com`\nExample: Sends ICMP ECHO_REQUEST packets to google.com with a Time To Live (TTL) of 64.\n\nCommand: `ping -s 1000 google.com`\nExample: Sends ICMP ECHO_REQUEST packets of size 1000 bytes to google.com.\n\nCommand: `ping -4 google.com`\nExample: Sends ICMP ECHO_REQUEST packets using IPv4 only to google.com.\n\nCommand: `ping -6 2001:db8::1`\nExample: Sends ICMP ECHO_REQUEST packets using IPv6 only to 2001:db8::1.\n\nCommand: `ping -f google.com`\nExample: Performs a flood ping to google.com (requires root privileges).\n\nCommand: `ping -v google.com`\nExample: Provides verbose output during the ping operation to google.com.\n\nCommand: `ping -w 5 google.com`\nExample: Sends ICMP ECHO_REQUEST packets to google.com and exits after 5 seconds, regardless of the number of packets sent or received.\n"
+  },
+  {
+    "time": "2025-04-24T11:22:27.493438",
+    "cmd": "tcpdump",
+    "data": "Command: `tcpdump host sundown`\nExample: Shows all packets to/from sundown.\n\nCommand: `tcpdump host helios and \\( hot or ace \\)`\nExample: Shows traffic between helios and hot OR ace.\n\nCommand: `tcpdump ip host ace and not helios`\nExample: Shows IP packets between ace and any host except helios.\n\nCommand: `tcpdump 'gateway snup and (port ftp or ftp-data)'`\nExample: Shows FTP traffic through gateway snup.\n\nCommand: `tcpdump -c 100 host example.com`\nExample: Captures 100 packets to/from example.com then exits.\n\nCommand: `tcpdump -w capture.pcap`\nExample: Saves all captured packets to capture.pcap.\n\nCommand: `tcpdump -r capture.pcap`\nExample: Reads and displays packets from capture.pcap.\n\nCommand: `tcpdump -i eth0 port 80`\nExample: Captures HTTP traffic on interface eth0.\n\nCommand: `tcpdump -e`\nExample: Includes link-layer headers in the output.\n\nCommand: `tcpdump -vvv`\nExample: Provides very verbose output, including detailed protocol information.\n"
+  }
+]
