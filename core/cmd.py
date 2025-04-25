@@ -25,15 +25,12 @@ if not GEMINI_API_KEY:
 genai.configure(api_key=GEMINI_API_KEY)
 
 def is_man_page(text: str) -> bool:
-    """Check if input appears to be a man page"""
     return any(section in text for section in ['NAME\n', 'SYNOPSIS\n', 'DESCRIPTION\n'])
 
 def detect_input_type(text: str) -> str:
-    """Determine if input is a man page or command output"""
     return 'man' if is_man_page(text) else 'cmd'
 
 def get_command_name(text: str) -> str:
-    """Extract command name from man page or command output"""
     if is_man_page(text):
         first_line = text.strip().split('\n')[0]
         match = re.match(r'^([A-Za-z0-9-]+)\([0-9]+\)', first_line)
@@ -42,13 +39,11 @@ def get_command_name(text: str) -> str:
         return hashlib.md5(text.encode()).hexdigest()[:8]
 
 def save_context(context: Dict):
-    """Save analysis context for interactive chat"""
     os.makedirs(os.path.dirname(CONTEXT_FILE), exist_ok=True)
     with open(CONTEXT_FILE, 'w') as f:
         json.dump(context, f)
 
 def analyze_content(text: str, context_type: str) -> str:
-    """Analyze content with Gemini based on input type"""
     model = genai.GenerativeModel('gemini-1.5-flash')
     
     if context_type == 'man':
@@ -62,7 +57,6 @@ def analyze_content(text: str, context_type: str) -> str:
     return response.text
 
 def man_explain(text: str):
-    """Main analysis workflow with chat context"""
     context_type = detect_input_type(text)
     cmd = get_command_name(text)
     
