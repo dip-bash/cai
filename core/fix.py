@@ -15,7 +15,6 @@ class ErrorFixer:
         genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
     
     def get_last_command(self):
-        """Fish shell-specific history retrieval"""
         try:
             # Get second-to-last command from Fish history
             cmd = "history | head -n 2 | tail -n 1"
@@ -34,7 +33,6 @@ class ErrorFixer:
             return None
 
     def analyze_error(self, command: str):
-        """Execute and analyze command error"""
         if not command:
             console.print("[red]Error:[/] No command to analyze")
             return
@@ -56,7 +54,7 @@ class ErrorFixer:
             return
 
         # Analyze error with AI
-        prompt = f"Fish shell command failed: {command}\nError:\n{stderr}\nExplain why this error occurred and suggest fixes and make it shorter:"
+        prompt = f"Fish shell command failed: {command}\nError:\n{stderr}\nExplain why this error occurred and suggest fixes and make it shorter. Answer format will be -> reason: \n fix:"
         response = self.gemini.generate_content(prompt)
         
         console.print("\n[red]🚨 Error Analysis:[/]")
@@ -66,7 +64,6 @@ class ErrorFixer:
         console.print(Markdown(f"```\n{stderr}\n```"))
 
     def safe_execute(self):
-        """Fish-specific error fixing workflow"""
         last_cmd = self.get_last_command()
         
         if not last_cmd or "cai --fix" in last_cmd:
