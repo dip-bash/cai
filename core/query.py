@@ -1,65 +1,78 @@
-import os
 import json
-import google.generativeai as genai
+import os
+from pathlib import Path
 from dotenv import load_dotenv
-from datetime import datetime
+import google.generativeai as genai
 from rich.console import Console
-from rich.text import Text
-from rich.panel import Panel
 from rich.markdown import Markdown
+from rich.panel import Panel
 from typing import List, Dict
 
 load_dotenv()
 console = Console()
 
-CONTEXT_FILE = os.path.join(os.path.dirname(__file__), '..', 'cache', 'context', 'last_context.json')
-
 class ChatManager:
-    def __init__(self):
+    PERSONA_PATH = Path(__file__).parent.parent / "config" / "persona.json"
+    
+    def __init__(self, use_persona=False):
         self._configure_gemini()
+        self.use_persona = use_persona
+        self.persona_context = None
         self.chat_session = None
         self.history: List[Dict] = []
         
+        if self.use_persona:
+            self._load_persona()
+
     def _configure_gemini(self):
         GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
         if not GEMINI_API_KEY:
-            console.print("[bold red]Error:[/] Missing GEMINI_API_KEY in .env file")
+            console.print("[bold red]Error:[/] Missing API key")
             exit(1)
         genai.configure(api_key=GEMINI_API_KEY)
-        
+
+    def _load_persona(self):
+        try:
+            with open(self.PERSONA_PATH) as f:
+                data = json.load(f)
+            self.persona_context = (
+                f"My name is {data['my_name']}. "
+                f"Youre role is{data['role']}. "
+                f"Your name is {data['name']}. "
+                f"Your gender is {data['gender']}. "
+                f"Your relationship status is {data['relationship']}. "
+                f"{data['traits'][0]} assistant. "
+                f"Style: {data['response_style']}"
+            )
+        except Exception as e:
+            self.persona_context = "You are a helpful assistant."
+
+    def _apply_persona(self, prompt: str) -> str:
+        if self.use_persona and self.persona_context:
+            if not hasattr(self, "_persona_applied"):
+                prompt = f"{self.persona_context}\n{prompt}"
+                self._persona_applied = True
+        return prompt
+
     def start_chat(self):
-        """Initialize a new chat session"""
         self.chat_session = genai.GenerativeModel('gemini-1.5-flash').start_chat()
         self.history = []
-        
+
     def send_message(self, message: str) -> Markdown:
-        """Send message to AI and return formatted response"""
         if not self.chat_session:
             self.start_chat()
             
+        message = self._apply_persona(message)
         response = self.chat_session.send_message(message)
-        self._update_history(prompt=message, response=response.text)
         return Markdown(response.text)
 
-    def contextual_chat(self, question: str) -> Markdown:  # Fixed parameter definition
-        """Chat with context from previous analysis"""
-        try:
-            os.makedirs(os.path.dirname(CONTEXT_FILE), exist_ok=True)
-            if not os.path.exists(CONTEXT_FILE):
-                return Markdown("No analysis context found. First analyze some content using pipe input.")
-            
-            with open(CONTEXT_FILE, 'r') as f:
-                context = json.load(f)
-            
-            prompt = f"Context:\n{context['analysis']}\n\nQuestion: {question}"
-            return self.send_message(prompt)  # Properly using self
-        except Exception as e:
-            return Markdown(f"Error loading context: {str(e)}")
+    def single_query(self, question: str) -> Panel:
+        model = genai.GenerativeModel('gemini-1.5-flash')
+        response = model.generate_content(question)
+        return Panel(
+            Markdown(response.text),
+            title="[bold green]🤖 Response[/]",
+            border_style="green",
+            padding=(1, 2)
+        )
 
-    def _update_history(self, prompt: str, response: str):
-        """Store conversation context"""
-        self.history.append({
-            'user': prompt,
-            'ai': response,
-            'timestamp': datetime.now().isoformat()
-        })
