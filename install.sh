@@ -51,11 +51,14 @@ fi
 # Create the virtual environment
 sudo python3 -m venv /usr/local/cai/cai_venv
 
+# Update pip in the virtual environment
+sudo /usr/local/cai/cai_venv/bin/python -m pip install --upgrade pip
+
 # Install uv in the virtual environment
 sudo /usr/local/cai/cai_venv/bin/pip install uv
 
-# Install requirements using uv
-sudo /usr/local/cai/cai_venv/bin/uv pip install -r /usr/local/cai/requirements.txt
+# Install requirements using uv with activated virtual environment
+sudo bash -c "source /usr/local/cai/cai_venv/bin/activate && uv pip install -r /usr/local/cai/requirements.txt"
 
 # Add alias to Fish config
 if ! grep -q "alias cai=" ~/.config/fish/config.fish; then
@@ -63,4 +66,4 @@ if ! grep -q "alias cai=" ~/.config/fish/config.fish; then
 fi
 
 # Print help message in bold green
-echo -e "\033[1;32mAdd gemini api key in '/usr/local/cai/.env'. For help type cai -h/--help\033[0m"
+echo -e "\033[1;32mAdd gemini api key in '/usr/local/.env' file. For help type cai -h/--help\033[0m"
