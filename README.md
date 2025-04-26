@@ -3,7 +3,7 @@
 > “Just type it. Let AI handle the rest.”
 
 `cai` is a customizable command-line tool powered by AI (Gemini). It helps you summarize man pages and command outputs, fix command errors and chat with an AI assistant — all from your terminal.
-**[ScreenShots](https://github.com/dip-bash/img/tree/main/cai)**
+
 ---
 
 ## ✨ Features
@@ -25,7 +25,7 @@
   - Colorized output
   - Markdown formatting
   - Progress indicators
-
+**[ScreenShots](https://github.com/dip-bash/img/tree/main/cai)**
 ## Future Updates
 
 - 🔍 **Encoding/Decoding**
