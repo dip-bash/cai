@@ -8,18 +8,26 @@
 
 ## ✨ Features
 
-- 📘 **Man Page Simplification and command output analysis**
-  - `man ping | cai` → Instantly summarized with examples
-  - `your_cmd | cai` → Analyse the output
-
-- 🧠 **AI Query**
-  - `cai "what is nmap?"` → Ask anything instantly
-  - `cai` → Open interactive chat session
-
-- 🔧 **Command Error Fix**
-  - `cai --fix` → Reruns the last failed command, explains the error & suggests fix
+- 🧠 **AI-Powered Analysis**
+  - Explain man pages
+  - Analyze command outputs
+  - Fix command errors
+    
+- 💬 **Interactive Chat Modes**
+  - General chat with persona
+  - Context-aware analysis chat
+    
+- ⚡ **Quick Fixes**
+  - Diagnose last command error (`--fix` flag)
+  - Direct question answering
+    
+- 🎨 **Rich Terminal Interface**
+  - Colorized output
+  - Markdown formatting
+  - Progress indicators
 
 ## Future Updates
+
 - 🔍 **Encoding/Decoding**
   - Encode: `echo "admin" | cai -e base64`
   - Decode: `echo "YWRtaW4=" | cai -d`
@@ -32,6 +40,23 @@
 - 💬 **Chat About Files**
   - `cai -c file.txt` → Analyze and chat about file contents
 
+## Basic Commands
+```bash
+# Interactive chat (with persona)
+python3 cai.py
+
+# Direct question answering
+python3 cai.py "how to unzip a tar.gz file?"
+
+# Analyze man page
+man ls | python3 cai.py
+
+# Analyze command output + chat
+ps aux | python3 cai.py -c
+
+# Fix last command error
+python3 cai.py --fix
+```
 
 ---
 
