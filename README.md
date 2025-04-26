@@ -25,6 +25,7 @@
   - Colorized output
   - Markdown formatting
   - Progress indicators
+---
 **[ScreenShots](https://github.com/dip-bash/img/tree/main/cai)**
 ## Future Updates
 
