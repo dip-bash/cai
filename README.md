@@ -43,3 +43,6 @@
 wget https://raw.githubusercontent.com/dip-bash/cai/main/setup_cai.sh && chmod +x setup_cai.sh && ./setup_cai.sh
 ```
 then add gemini api key to "/usr/local/cai/.env"
+
+### 🔧 For Windows
+> "coming soon"
