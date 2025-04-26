@@ -68,7 +68,7 @@ python3 cai.py --fix
 ```bash
 wget https://raw.githubusercontent.com/dip-bash/cai/main/setup_cai.sh && chmod +x setup_cai.sh && ./setup_cai.sh
 ```
-then add gemini api key to "/usr/local/cai/.env"
+> then add gemini api key to "/usr/local/cai/.env". You can find api key [here](https://aistudio.google.com/apikey)
 
 ### 🔧 For Windows
 > "coming soon"
