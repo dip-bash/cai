@@ -58,6 +58,7 @@ ps aux | python3 cai.py -c
 python3 cai.py --fix
 ```
 
+> "For Ai Persona Configuration Edit config/persona.json"
 ---
 
 ## 📦 Installation
