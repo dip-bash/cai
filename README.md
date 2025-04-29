@@ -65,9 +65,13 @@ python3 cai.py --fix
 ## 📦 Installation
 
 ### 🔧 For Linux
-
+- for all user
 ```bash
 wget https://raw.githubusercontent.com/dip-bash/cai/main/setup_cai.sh && chmod +x setup_cai.sh && ./setup_cai.sh
+```
+-- for local user
+```bash
+wget https://raw.githubusercontent.com/dip-bash/cai/main/setup_cai.sh && chmod +x setup_cai_local.sh && ./setup_cai.sh
 ```
  **then add gemini api key to "/usr/local/cai/.env". You can find api key [here](https://aistudio.google.com/apikey)**
 
