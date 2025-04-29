@@ -69,7 +69,7 @@ python3 cai.py --fix
 ```bash
 wget https://raw.githubusercontent.com/dip-bash/cai/main/setup_cai.sh && chmod +x setup_cai.sh && ./setup_cai.sh
 ```
--- for local user
+- for local user
 ```bash
 wget https://raw.githubusercontent.com/dip-bash/cai/main/setup_cai.sh && chmod +x setup_cai_local.sh && ./setup_cai.sh
 ```
