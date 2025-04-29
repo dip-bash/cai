@@ -71,7 +71,7 @@ wget https://raw.githubusercontent.com/dip-bash/cai/main/setup_cai.sh && chmod +
 ```
 - for local user
 ```bash
-wget https://raw.githubusercontent.com/dip-bash/cai/main/setup_cai.sh && chmod +x setup_cai_local.sh && ./setup_cai.sh
+wget https://raw.githubusercontent.com/dip-bash/cai/main/setup_cai_local.sh && chmod +x setup_cai_local.sh && ./setup_cai_local.sh
 ```
  **then add gemini api key to "/usr/local/cai/.env". You can find api key [here](https://aistudio.google.com/apikey)**
 
