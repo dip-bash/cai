@@ -1,5 +1,4 @@
-# 🧠 cai - Command-line AI Assistant (for hackers, tinkerers & learners)
-
+# 🧠 cai - Command-line AI Assistant 
 > “Just type it. Let AI handle the rest.”
 
 `cai` is a customizable command-line tool powered by AI (Gemini). It helps you summarize man pages and command outputs, fix command errors and chat with an AI assistant — all from your terminal.
