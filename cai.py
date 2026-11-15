@@ -29,7 +29,7 @@ def parse_arguments():
 
 def show_help():
     """Display formatted help message"""
-    help_text = """\n
+    help_text = """\n CAI
     [bold cyan]Usage:[/]
       cai               # Interactive chat with persona
       cai [question]    # Direct question (no persona)
