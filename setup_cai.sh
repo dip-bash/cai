@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-
+# new update comiiiiiig
 # Detect package manager
 if command -v apt >/dev/null 2>&1; then
     PKG_MANAGER="apt"
